@@ -7,8 +7,34 @@
 
 
 module.exports = (pool) => {
-    // inserts new user + pw into users table (returns boolean
-    let newUser = (user, callback) => {
+    // check for existing usernames returns boolean
+    let checkUserName = (username, callback) => {
+        let query = `SELECT EXISTS (SELECT * FROM users WHERE name= $1)`;
+        let values = [username]
+
+        pool.query(query, values, (error, queryResult) => {
+            if( error ){
+                console.log("query unsuccessful");
+                callback(error, null);
+            }else{
+                console.log("query successful");
+                console.log(queryResult.rows[0].exists);
+                //if username exists
+                if(queryResult.rows[0].exists){
+                    console.log("query : name exists ");
+                    console.log(queryResult.rows[0])
+                    // returns (null, true)
+                    callback(null, queryResult.rows);
+                }else{
+                    console.log("query : name does not exist ");
+                    //if username does not exist return false
+                    callback(null, null);
+                }
+            }
+        });
+    };
+    // inserts new user + pw into users table
+    let registerNewUser = (user, callback) => {
 
         console.log(user);
         console.log(user.name);
@@ -24,7 +50,8 @@ module.exports = (pool) => {
                 console.log("query successful");
                 if( queryResult.rows.length > 0 ){
                     console.log('new user added!!')
-                    callback(null, queryResult.rows);
+
+                    callback(null, queryResult.rows[0]);
                 }else{
                     console.log("failed to add new user!!");
                     callback(null, null);
@@ -32,84 +59,148 @@ module.exports = (pool) => {
             }
         });
     };
-    // check for existing usernames returns boolean
-    let userName = (name, callback) => {
-        let query = `SELECT EXISTS (SELECT * FROM users WHERE name='${name}')`;
+    // get userid from username
+    let getUserId = (username, callback) => {
 
-        pool.query(query, (error, queryResult) => {
-            if( error ){
-                console.log("query unsuccessful");
-                callback(error, null);
-
-            }else{
-                console.log(queryResult.rows[0].exists);
-                //if username exists
-                if(queryResult.rows[0].exists){
-                    // returns (null, tru)
-                    callback(null, true);
-                }else{
-                    //if username does not exist return false
-                    callback(null, null);
-                }
-            }
-        });
-    };
-    // get user details from name
-    let fromName = (name, callback) => {
-        const query = `SELECT * FROM users WHERE name = $1`;
-        const values = [name];
+        const query = `SELECT id FROM users WHERE name = $1`;
+        const values = [username];
 
         pool.query(query, values, (error, queryResult) => {
             if( error ){
                 console.log("query unsuccessful");
                 callback(error, null);
-
             }else{
-                console.log(queryResult.rows[0]);
-                //if username exists
-                if(queryResult.rows[0].name === name){
-                    // returns (null, resuslts)
+                console.log("query successful");
+                if(queryResult.rows.length > 0){
+                    console.log("query: " + queryResult.rows);
                     callback(null, queryResult.rows);
                 }else{
-                    //if username does not exist return null
+                    console.log("query: null");
+                    callback(null, null);
+                }
+            }
+        });
+    };
+    // get username from userid
+    let getUserName = (userid, callback) => {
+
+        const query = `SELECT name FROM users WHERE id = $1`;
+        const values = [userid];
+
+        pool.query(query, values, (error, queryResult) => {
+            if( error ){
+                console.log("query unsuccessful");
+                callback(error, null);
+            }else{
+                console.log("query successful");
+                if(queryResult.rows.length > 0){
+                    console.log("query: " + queryResult.rows);
+                    callback(null, queryResult.rows);
+                }else{
+                    console.log("query: null");
+                    callback(null, null);
+                }
+            }
+        });
+    };
+    // get user password from username
+    let getUserPassword = (username, callback) => {
+
+        const query = `SELECT password FROM users WHERE name = $1`;
+        const values = [username];
+
+        pool.query(query, values, (error, queryResult) => {
+            if( error ){
+                console.log("query unsuccessful");
+                callback(error, null);
+            }else{
+                console.log("query successful");
+                if(queryResult.rows.length > 0){
+                    console.log("query: " + queryResult.rows);
+                    callback(null, queryResult.rows);
+                }else{
+                    console.log("query: null");
                     callback(null, null);
                 }
             }
         });
     };
     // get user details from form
-    let userDetails = (user, callback) => {
-        console.log(user);
-        console.log(user.name);
-        console.log(user.password);
+    let getUserDetails = (username, callback) => {
 
         const query = `SELECT * FROM users WHERE name = $1`;
-        const values = [user.name];
+        const values = [username];
 
         pool.query(query, values, (error, queryResult) => {
             if( error ){
                 console.log("query unsuccessful");
                 callback(error, null);
-
             }else{
-                console.log(queryResult.rows[0]);
-                //if username exists
-                if(queryResult.rows[0].name === user.name){
-                    // returns (null, tru)
+                console.log("query successful");
+                if(queryResult.rows.length > 0){
+                    console.log("query: " + queryResult.rows[0]);
                     callback(null, queryResult.rows);
                 }else{
-                    //if username does not exist return false
+                    console.log("query: null");
+                    callback(null, null);
+                }
+            }
+        });
+    };
+    let getAllUserId = (callback) => {
+
+        const query = `SELECT id FROM users`;
+
+        pool.query(query, (error, queryResult) => {
+            if( error ){
+                console.log("query unsuccessful");
+                callback(error, null);
+            }else{
+                console.log("query successful");
+                //if username exists
+                if(queryResult.rows.length > 0){
+                    console.log("returning query");
+                    callback(null, queryResult.rows);
+                }else{
+                    console.log("query: null");
+                    callback(null, null);
+                }
+            }
+        });
+    };
+    let getAllUserName = (callback) => {
+
+        const query = `SELECT name FROM users`;
+
+        pool.query(query, (error, queryResult) => {
+            if( error ){
+                console.log("query unsuccessful");
+                callback(error, null);
+            }else{
+                console.log("query successful");
+                //if username exists
+                if(queryResult.rows.length > 0){
+                    console.log("returning query");
+                    console.log("query: " + queryResult.rows);
+                    callback(null, queryResult.rows);
+                }else{
+                    console.log("query: null");
                     callback(null, null);
                 }
             }
         });
     };
 
-    return {
-        checkUserName: userName,
-        registerNewUser: newUser,
-        getUserDetails: userDetails,
-        getUserFromName: fromName
 
-        }
+    return {
+
+        checkUserName,
+        registerNewUser,
+        getUserId,
+        getUserName,
+        getUserPassword,
+        getUserDetails,
+        getAllUserId,
+        getAllUserName,
+    }
 };

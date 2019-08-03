@@ -1,36 +1,37 @@
 var React = require('react');
 
 var Head = require('./components/head');
-var ModalError = require('./components/errorprompt');
+
 
 
 class Home extends React.Component {
   render() {
 
-    console.log("\Error")
-    const errorMsg = this.props.msg
+    var errorMsg  = this.props.msg;
+    var status  = this.props.status;
+    console.log(errorMsg)
 
-
+    console.log("\nError Page Rendered now")
 
     return (
         <html>
         <Head/>
         <body className="vertical-center">
-            <div className="container-fluid ">
-                <div className="row ">
+            <div className="container-fluid">
+                <div className="row">
                     <div className="col-8 mx-auto">
 
-                        <div className="jumbotron border-danger">
-                            <h1 className="display-3">Oops, something went wrong!!</h1>
-                            <p className="lead">error</p>
-                            <hr className="my-4"/>
+                        <div className="jumbotron">
+                            <h3 className="display-4">Oops, something went wrong!!</h3>
+                            <hr className="my-3"/>
+                            <h5 className="display-6 text-center">{status}</h5>
+                            <p className="lead text-center">{errorMsg}</p>
 
-                            <p className="lead">
-                                <a className="btn btn-outline-success btn-lg" href="/webnosser" role="button">Return to HOME</a>
-                                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="place some text here" data-original-title="Tooltip on top">Top</button>
-                                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">
-  Tooltip with HTML
-</button>
+                            <hr className="my-2"/>
+
+                            <p className="lead text-center">
+                                <a className="btn btn-outline-danger btn-lg" href="/webnosser" role="button">Return to MAIN</a>
+
 
                             </p>
                         </div>

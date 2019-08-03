@@ -1,3 +1,3 @@
 DROP TABLE users;
-DROP TABLE shelf;
-DROP TABLE user_reads;
+DROP TABLE novels;
+DROP TABLE user_novels;

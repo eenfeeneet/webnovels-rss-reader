@@ -14,20 +14,26 @@ module.exports = (app, allModels) => {
 
     // require the controller
 
-    const webnosserControllerCallbacks = require('./controllers/webnosser')(allModels);
+    const users = require('./controllers/webnosser')(allModels);
 
 
 
 
-    app.get('/', webnosserControllerCallbacks.root);
-    app.get('/webnosser', webnosserControllerCallbacks.index);
+
+    app.get('/', users.root);
+    app.get('/webnosser', users.index);
+    app.get('/webnosser/error', users.error);
+    app.get('/webnosser/test', users.test);
 
 
-    app.post('/webnosser/register', webnosserControllerCallbacks.register);
-    app.post('/webnosser/login', webnosserControllerCallbacks.login);
-    app.post('/webnosser/login', webnosserControllerCallbacks.login);
-    app.get('/webnosser/:user', webnosserControllerCallbacks.profile);
 
-    app.get('/test', webnosserControllerCallbacks.test);
+    app.post('/webnosser/register', users.register);
+    app.post('/webnosser/login', users.login);
+    app.get('/webnosser/logout', users.logout);
+    app.get('/webnosser/:user', users.profile);
+
+    app.post('/webnosser/:id/novels/add', users.add);
+
+
 
 };

@@ -29,7 +29,7 @@ class NavBar extends React.Component {
             </ul>
 
 
-            <button type="button" className="btn btn-outline-success" data-toggle="modal" data-target="#modalLogOut" href="">Log Out</button>
+            <a role="button" className="btn btn-outline-success" href="/webnosser/logout">Log Out</a>
 
          </div>
      </nav>

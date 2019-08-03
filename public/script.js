@@ -1,132 +1,65 @@
 
-// what to do when we recieve the request
-var doRequest = function(userinput) {
+// var responseHandler = function() {
+//     var xmlTxt = this.responseText;
+//     var domParser = new DOMParser()
+//     let doc = domParser.parseFromString(xmlTxt, 'text/xml')
 
-    var data = { "quote": userinput };
+//     doc.querySelectorAll('item').forEach((item) => {
 
-    var responseHandler = function() {
-        let parentQuote = document.querySelector("#quotes-list");
-        let listChild = document.createElement('li');
-        listChild.innerText= userinput;
-        listChild.className= "list-group-item d-flex justify-content-between align-items-center";
-        parentQuote.appendChild(listChild);
-
-        console.log("hello")
-        console.log("response text", this.responseText);
-        console.log("status text", this.statusText);
-        console.log("status code", this.status);
-    };
-
-    // make a new request
-    var request = new XMLHttpRequest();
-
-    // listen for the request response
-    request.addEventListener("load", responseHandler);
-
-    // ready the system by calling open, and specifying the url
-    var url = "/";
-    request.open("post", url);
-    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-    // send the request
-    request.send(JSON.stringify(data));
-};
-
-var logFeed = function() {
-    var responseHandler = function() {
-        var xmlTxt = this.responseText;
-        var domParser = new DOMParser()
-        let doc = domParser.parseFromString(xmlTxt, 'text/xml')
-        console.log(doc)
-        doc.querySelectorAll('item').forEach((item) => {
-            let h5 = document.createElement('h5')
-            h5.textContent = item.querySelector('title').textContent
-            document.querySelector('#output').appendChild(h5)
-        })
-
-        console.log("hello")
-        console.log("response text", this.responseText);
-
-        console.log("status text", this.statusText);
-        console.log("status code", this.status);
-
-    };
-
-    // make a new request
-    var request = new XMLHttpRequest();
-
-    // listen for the request response
-    request.addEventListener("load", responseHandler);
-
-    const proxyurl = "https://cors-anywhere.herokuapp.com/"
-    // ready the system by calling open, and specifying the url
-    var url = "https://www.royalroad.com/fiction/syndication/24709";
-    request.open("GET", proxyurl+url);
+//         let parentCard = document.createElement('div')
+//         parentCard.className = 'card border-success'
 
 
+//         let cardHeader = document.createElement('h5')
+//         cardHeader.className = 'card-header'
+//         cardHeader.textContent = item.querySelector('title').textContent
 
 
-    // send the request
-    request.send();
-}
+//         let cardBody = document.createElement('div')
+//         cardBody.setAttribute('className', 'card-body');
 
-var getFeed = function() {
-    var responseHandler = function() {
-        var xmlTxt = this.responseText;
+//         let cardTextChild = document.createElement('p')
+//         cardTextChild.className = 'card-text p-2'
+//         cardTextChild.innerHTML = item.querySelector('description').textContent
 
-        var domParser = new DOMParser()
-        let doc = domParser.parseFromString(xmlTxt, 'text/xml')
+//         let chapLinkChild = document.createElement('a')
+//         chapLinkChild.className = 'btn btn-outline-success'
+//         chapLinkChild.href = item.querySelector('link').textContent
+//         chapLinkChild.textContent = "Go website"
 
-        var feedUrl = doc.querySelector('link[type="application/rss+xml"]')
-        let url2 = domParser.parseFromString(feedUrl, "text/html")
-        let url3 = new Text(url2)
-        console.log(feedUrl)
-        console.log(Object.keys(feedUrl))
+//         parentCard.appendChild(cardHeader);
+//         cardBody.appendChild(cardTextChild);
+//         cardBody.appendChild(chapLinkChild);
+//         parentCard.appendChild(cardBody);
 
+//         document.querySelector('#content').appendChild(parentCard)
+//     })
 
-        let h5 = document.createElement('h5')
-        h5.textContent = feedUrl
+//     console.log("status text", this.statusText);
+//     console.log("status code", this.status);
+// };
 
-        document.querySelector('#output-feed').appendChild(h5)
+// var logFeed = function(rssUrl) {
+//     // make a new request
+//     var request = new XMLHttpRequest();
 
-        console.log("hello")
-        console.log("status text", this.statusText);
-        console.log("status code", this.status);
-    };
+//     // listen for the request response
+//     request.addEventListener("load", responseHandler);
 
-    // make a new request
-    var request = new XMLHttpRequest();
+//     const proxyurl = "https://cors-anywhere.herokuapp.com/"
+//     // ready the system by calling open, and specifying the url
+//     var url = "https://www.royalroad.com/fiction/syndication/11209";
+//     request.open("GET", proxyurl+rssUrl);
 
-    // listen for the request response
-    request.addEventListener("load", responseHandler);
+//     // send the request
+//     request.send();
+// }
 
-    // var input = document.querySelector('#input');
-    // var url = input.value;
-    //var url = document.getElementById("#input").innerHTML
-    var url = document.querySelector('textarea').value
-    console.log(url)
-    const proxyurl = "https://cors-anywhere.herokuapp.com/"
-    // ready the system by calling open, and specifying the url
+// window.onload()
 
-    request.open("GET", proxyurl+url);
+// var buttonRss = document.getElementById("btn1");
 
-    // send the request
-    request.send();
-};
-
-
-// var button = document.getElementById("btn-input");
-// var buttonGet = document.getElementById("btn-get");
-// var buttonShow = document.getElementById("btn-show");
-
-// buttonShow.addEventListener("click", function() {
+// buttonRss.addEventListener("click", function(event) {
+//     console.log( event.target.srcElement )
 //     logFeed();
-// })
-// buttonGet.addEventListener("click", function() {
-//     getFeed();
-// })
-// button.addEventListener("click", function() {
-//     var input = document.querySelector('#input');
-//     var inputQuote = input.value;
-//     doRequest(inputQuote);
 // })

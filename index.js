@@ -19,7 +19,7 @@ console.log("app Created");
 // Set up middleware
 app.use(methodOverride('_method'));
 
-app.use(cookieParser());
+app.use(cookieParser("shahaha"));
 
 app.use(express.static('public'));
 

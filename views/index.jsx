@@ -9,7 +9,7 @@ var ModalR = require('./components/modalregister');
 class Home extends React.Component {
   render() {
 
-    console.log("\nStarto")
+    console.log("\nIndex Page Rendered")
 
 
 

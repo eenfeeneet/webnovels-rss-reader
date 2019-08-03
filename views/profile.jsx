@@ -6,15 +6,19 @@ var ModalLogout = require('./components/modallogout');
 var Footer = require('./components/footer');
 
 var Profile = require('./components/cardprofile');
-var Navigation = require('./components/cardshelf');
+var Feeds = require('./components/cardfeeds');
 var Content = require('./components/cardcontent');
+
+var ModalAdd = require('./components/modaladd');
 
 
 class Home extends React.Component {
   render() {
 
-    console.log("\nStarto")
+    console.log("\nProfile Page Rendered")
     // console.log(this.props.user)
+    const userData = this.props.user
+    const userNovels = this.props.novels
 
 
 
@@ -27,16 +31,17 @@ class Home extends React.Component {
         <ModalLogout/>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-3">
-                        <Profile user = {this.props.user}/>
-                        <Navigation/>
+                    <div className="col-md-4">
+                        <Profile user = {userData}/>
+                        <Feeds user = {userData} novels = {userNovels}/>
                     </div>
                     <div className="col">
                         <Content/>
+                        <ModalAdd user = {userData}/>
                     </div>
                 </div>
             </div>
-        <script src="/script.js"></script>
+        <script src="/profile.js"></script>
         <Footer/>
         </body>
         </html>

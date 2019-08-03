@@ -23,11 +23,11 @@ class ModalRegister extends React.Component {
                             <form action="/webnosser/register" method="post" name="register">
                                 <div className="form-group">
                                     <label htmlFor="inputUsername">First Name</label>
-                                    <input type="text"  name="name" className="form-control" id="username-reg" placeholder="Enter User Name" required/>
+                                    <input type="text"  name="name" className="form-control" id="username-reg" placeholder="Enter User Name" minLength="3" required/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="inputPassword">Password</label>
-                                    <input type="password" name="password" id="password-reg" className="form-control" placeholder="Enter Password" required/>
+                                    <input type="password" name="password" id="password-reg" className="form-control" placeholder="Enter Password" minLength="4" required/>
                                 </div>
 
                                 <div className="col-md-12 text-center">
