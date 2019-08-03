@@ -21,9 +21,9 @@ module.exports = (app, allModels) => {
 
 
     app.get('/', users.root);
-    app.get('/webnosser', users.index);
+    app.get('/webnosser', users.main);
     app.get('/webnosser/error', users.error);
-    app.get('/webnosser/test', users.test);
+    //app.get('/webnosser/check', users.check);
 
 
 

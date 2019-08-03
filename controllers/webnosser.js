@@ -8,13 +8,20 @@ module.exports = (db) => {
     * ===========================================
     */
 
-
     let testCallback = (req, res) => {
+
+    };
+    let mainCallback = (req, res) => {
         const checkCookie = req.cookies.usrLogged
+        console.log(checkCookie)
         const hashedUserLogged = sha256('loggedout' + SALT);
         if(checkCookie === hashedUserLogged){
-            res.redirect(301,'/webnosser');
-        } else{
+            console.log("no user logged in")
+            res.render('main');
+        } else if(checkCookie === undefined){
+            console.log("no cookie detected")
+            res.render('main');
+        } else {
             db.usersDb.getAllUserName((error, result) =>{
                 if(result === null){
                         console.log('failed!!')
@@ -36,6 +43,7 @@ module.exports = (db) => {
                 }
             })
         }
+
     };
     let errorCallback = (req, res) => {
         console.log(path)
@@ -44,11 +52,11 @@ module.exports = (db) => {
     };
 
     let rootCallback = (req, res) => {
-        res.redirect(301,'/webnosser');
+        res.render('root');
     };
-    let indexCallback = (req, res) => {
-        res.render('index');
-    };
+    // let mainCallback = (req, res) => {
+    //     res.render('main');
+    // };
 
 
 
@@ -280,7 +288,7 @@ module.exports = (db) => {
                         }
                         res.status(502).render(`errorpage`, data);
                     } else {
-                        res.redirect(301,'/webnosser/test')
+                        res.redirect(301,'/webnosser/check')
                     }
                 })
             }
@@ -297,9 +305,10 @@ module.exports = (db) => {
    */
   return {
     test: testCallback,
+    // check: checkCallback,
     error: errorCallback,
     root: rootCallback,
-    index: indexCallback,
+    main: mainCallback,
     register: registerCallback,
     login: loginCallback,
     logout: logoutCallback,
