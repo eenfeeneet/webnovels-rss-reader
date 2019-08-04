@@ -27,8 +27,7 @@ class CardContent extends React.Component {
                     <li class="list-group-item d-flex justify-content-between align-items-center" id={btnid} src={novel.url}>
                         <a className="mr-auto">{novel.name}</a>
                         <a role="button" id="check" className="mx-2" href="" ><i className="far fa-edit fa-lg text-dark"></i></a>
-                        <a role="button" type="submit" formAction={deleteUrl} formMethod="POST" className="mx-2 delfeed" href={deleteUrl}><i className="far fa-trash-alt fa-lg text-dark"></i></a>
-                        <button className="btn-link mx-2 delfeed" type="submit"><i className="far fa-trash-alt fa-lg text-dark"></i></button>
+                        <button className="btn btn-link mx-2 delfeed" type="submit"><i className="far fa-trash-alt fa-lg text-dark"></i></button>
                     </li>
                 </form>
 
@@ -44,9 +43,9 @@ class CardContent extends React.Component {
             <div className="card bg-light rounded min-vh-100 align-items-stretch text-dark">
                 <div className="card-header d-flex justify-content-between align-items-center">
                     Your Feed
-                    <a role="button" className="btn" data-toggle="modal" data-target="#modalAdd" href="">
+                    <button type="button" className="btn btn-link" data-toggle="modal" data-target="#modalAdd" >
                         <i className="fas fa-plus fa-lg text-dark" ></i>
-                    </a>
+                    </button>
 
                 </div>
                 <div className="card-body overflow-auto" id="content">
