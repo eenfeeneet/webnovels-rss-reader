@@ -32,7 +32,7 @@ INSERT INTO user_novels (user_id, novel_id) VALUES(1, 1);
 INSERT INTO user_novels (user_id, novel_id) VALUES(1, 2);
 INSERT INTO user_novels (user_id, novel_id) VALUES(1, 5);
 INSERT INTO user_novels (user_id, novel_id) VALUES(1, 7);
-INSERT INTO user_novels (user_id, novel_id) VALUES(1, 7);
+INSERT INTO user_novels (user_id, novel_id) VALUES(1, 8);
 
 INSERT INTO user_novels (user_id, novel_id) VALUES(2, 3);
 

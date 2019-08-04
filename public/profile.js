@@ -54,26 +54,36 @@ var logFeed = function(rssUrl) {
     // send the request
     request.send();
 }
-var remove = function(){
+var rmvChild = function(){
     var container = document.getElementById("content");
 
     while (container.hasChildNodes()) {
         container.removeChild(container.firstChild);
     }
 };
+
+
 var btnArray = function() {
     return Array.from(document.querySelectorAll(".foo"))
 };
 var btnAddEventList = function() {
     btnArray().forEach(function(item) {
         var s = item.getAttribute('src')
-        item.addEventListener('click', logFeed(s))
+        item.addEventListener('click', function() {
+            rmvChild();
+            logFeed(s)
+        })
     })
 };
 
 window.onload = function(e) {
     btnAddEventList();
 };
+
+var buttonTest = document.getElementById("settings");
+buttonTest.addEventListener("click", function() {
+    rmvChild();
+})
 
 // var buttonRss = document.getElementById("btn1");
 

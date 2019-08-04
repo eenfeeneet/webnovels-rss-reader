@@ -10,7 +10,7 @@ module.exports = (pool) => {
     // inserts new user + pw into users table (returns boolean
     let getUserNovels = (userid, callback) => {
 
-        let query = 'SELECT user_novels.user_id, novels.name, novels.url FROM user_novels INNER JOIN novels ON (user_novels.novel_id = novels.id) WHERE user_novels.user_id = $1'
+        let query = 'SELECT user_novels.user_id, user_novels.novel_id, novels.name, novels.url FROM user_novels INNER JOIN novels ON (user_novels.novel_id = novels.id) WHERE user_novels.user_id = $1'
         let value = [userid];
 
 

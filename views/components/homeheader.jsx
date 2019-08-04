@@ -5,7 +5,7 @@ class HomeHeaeder extends React.Component {
 
     return (
 
-            <div className="row justify-content-center">
+            <div className="row justify-content-center text-light">
                 <div className="col-md-3 text-center ">
 
                     <h1 className="font-weight-bolder">WebNoSSer</h1>

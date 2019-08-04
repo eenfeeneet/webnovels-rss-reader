@@ -31,6 +31,7 @@ module.exports = (app, allModels) => {
     app.post('/webnosser/login', users.login);
     app.get('/webnosser/logout', users.logout);
     app.get('/webnosser/:user', users.profile);
+    // app.get('/webnosser/:user/feeds', users.feeds);
 
     app.post('/webnosser/:id/novels/add', users.add);
 

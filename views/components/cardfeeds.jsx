@@ -15,16 +15,16 @@ class CardFeeds extends React.Component {
     } else{
         novelsList = novels.map(novel=>{
             let btnid = "btn"+novel.novel_id
-            return (<a type="button" id={btnid} className="list-group-item list-group-item-action foo" src={novel.url} > {novel.name} </a>)
+            return (<a type="button" id={btnid} className="list-group-item list-group-item-action bg-light foo" src={novel.url} > {novel.name} </a>)
         })
     }
 
     return (
-            <div className="card border-success my-2">
+            <div className="card bg-light border-primary text-dark my-2">
                 <div className="list-group" id="feed-list">
                     <div className="card-header d-flex justify-content-between">
                         <p>Your Feeds</p>
-                        <button type="button" className="close" data-toggle="modal" data-target="#modalAdd" href="" ><span aria-hidden="true">&#43;</span></button>
+                        <button type="button" className="close" data-toggle="modal" data-target="#modalAdd" href="" ><i className="fas fa-cog text-danger"></i></button>
                     </div>
                     {novelsList}
                 </div>
@@ -36,3 +36,7 @@ class CardFeeds extends React.Component {
 }
 
 module.exports = CardFeeds;
+
+
+//<a type="button" className="btn btn-link" href="" ><i class="fas fa-cog"></i></a>
+//

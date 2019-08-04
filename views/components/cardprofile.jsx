@@ -9,16 +9,18 @@ class ProfileCard extends React.Component {
     const userId = "user"+id
     return (
 
-            <div className="card border-success">
+            <div className="text-dark bg-light border-primary rounded">
+                <div class="card-header">
+                    <h4 id ={userId}>Welcome {name}</h4>
+                </div>
                 <div className="card-body">
-                <h4>Welcome</h4>
-                <h5 id ={userId}>{name}</h5>
+
                     <div>
                         <h6>Some Data</h6>
                         <h6>Some More Data</h6>
                         <h6>Some Some More Data</h6>
-                        <h6>Some Some More More Data</h6>
-                        <button type="submit" className="btn btn-outline-success my-2">Submit</button>
+                        <h6>Some </h6>
+                        <button type="submit" className="btn btn-outline-success my-2" id="settings">Submit</button>
                     </div>
                 </div>
             </div>

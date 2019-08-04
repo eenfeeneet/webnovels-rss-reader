@@ -10,6 +10,7 @@ body {
   background-attachment: fixed;
   height: 100vh;
   min-height: 100vh
+  font-family: 'Orbitron', sans-serif;
 }
 nav {
 	background-color: #282828;

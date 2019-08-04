@@ -4,11 +4,11 @@ class ModalLogin extends React.Component {
   render() {
 
     return (
-    <div className="modal fade " id="modalLogIn" tabIndex="-1" role="dialog" aria-labelledby="modalLogIn" aria-hidden="true">
+    <div className="modal fade text-dark " id="modalLogIn" tabIndex="-1" role="dialog" aria-labelledby="modalLogIn" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered " role="document">
             <div className="modal-content bg-secondary border-success">
                 <div className="modal-header">
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" className="close text-dark" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div className="modal-body bg-secondary">
                     <div id="first">
@@ -33,7 +33,7 @@ class ModalLogin extends React.Component {
                                     <button type="submit" className=" btn btn-light mybtn tx-tfm">Login</button>
                                 </div>
                                 <div className="form-group">
-                                    <p className="text-center">Don't have account? <a data-toggle="modal" data-target="#modalRegister" href="" aria-hidden="true">Sign up here</a></p>
+                                    <p className="text-center">Don't have account? <a className="text-danger" data-toggle="modal" data-target="#modalRegister" href="" aria-hidden="true">Sign up here</a></p>
                                 </div>
                             </form>
                         </div>
