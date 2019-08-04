@@ -63,24 +63,11 @@ var rmvChild = function(){
 };
 
 
-var btnFeedArray = function() {
-    return Array.from(document.querySelectorAll(".feed"))
+var btnArray = function() {
+    return Array.from(document.querySelectorAll(".foo"))
 };
-var btnDeleteArray = function() {
-    return Array.from(document.querySelectorAll(".delfeed"))
-};
-
-var btnFeedAddEventList = function() {
-    btnFeedArray().forEach(function(item) {
-        var s = item.getAttribute('src')
-        item.addEventListener('click', function() {
-            rmvChild();
-            logFeed(s)
-        })
-    })
-};
-var btnDeleteAddEventList = function() {
-    btnDeleteArray().forEach(function(item) {
+var btnAddEventList = function() {
+    btnArray().forEach(function(item) {
         var s = item.getAttribute('src')
         item.addEventListener('click', function() {
             rmvChild();
@@ -90,17 +77,12 @@ var btnDeleteAddEventList = function() {
 };
 
 window.onload = function(e) {
-    btnFeedAddEventList();
+    btnAddEventList();
 };
 
 var buttonTest = document.getElementById("settings");
 buttonTest.addEventListener("click", function() {
     rmvChild();
-})
-
-var buttonCheck = document.getElementById("check");
-buttonCheck.addEventListener("click", function(event) {
-    alert("asdasdasd")
 })
 
 // var buttonRss = document.getElementById("btn1");

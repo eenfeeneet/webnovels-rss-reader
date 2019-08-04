@@ -57,9 +57,30 @@ module.exports = (pool) => {
         });
     };
 
+    let deleteNovels = (data, callback) => {
+        let query = 'DELETE FROM user_novels WHERE novel_id = $1 AND user_id = (SELECT id FROM users WHERE name = $2) RETURNING id'
+        let values = [data.novelId, data.userName];
+
+        pool.query(query, values,(error, queryResult) => {
+            if( error ){
+                console.log("query unsuccessful");
+                callback(error, null);
+            }else{
+                console.log(`query successful!!`);
+                if( queryResult.rows.length > 0 ){
+                    console.log(`query : queryResult.rows`);
+                    callback(null, queryResult.rows);
+                }else{
+                    console.log(`query : failed to delete`);
+                    callback(null, null);
+                }
+            }
+        });
+    };
 
     return {
         getUserNovels,
-        addNovels
+        addNovels,
+        deleteNovels
         }
 };

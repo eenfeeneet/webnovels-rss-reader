@@ -6,8 +6,9 @@ var ModalLogout = require('./components/modallogout');
 var Footer = require('./components/footer');
 
 var Profile = require('./components/cardprofile');
+var Search = require('./components/cardsearch');
 var Feeds = require('./components/cardfeeds');
-var Content = require('./components/cardcontent');
+var FeedSettings = require('./components/cardfeedsettings');
 
 var ModalAdd = require('./components/modaladd');
 
@@ -35,17 +36,20 @@ class Home extends React.Component {
                     <div className="col-md-4">
 
                         <Profile user = {userData}/>
+                        <Search/>
                         <Feeds user = {userData} novels = {userNovels}/>
                     </div>
                     <div className="col">
-                        <Content/>
+                        <FeedSettings user = {userData} novels = {userNovels}/>
                         <ModalAdd user = {userData}/>
+
+
                     </div>
                 </div>
             </div>
 
 
-        <script src="https://kit.fontawesome.com/8a65d96d74.js"></script>
+
         <script src="/profile.js"></script>
 
         <Footer/>

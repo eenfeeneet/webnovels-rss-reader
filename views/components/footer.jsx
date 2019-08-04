@@ -8,7 +8,7 @@ class Footer extends React.Component {
     return (
 
 
-        <nav className="navbar navbar-expand-lg navbar-dark border-success rounded mt-5">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light rounded mt-5">
             <div className="footer-copyright py -2">
                 © 2019 Copyright
             </div>

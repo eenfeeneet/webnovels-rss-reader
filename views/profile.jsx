@@ -6,10 +6,11 @@ var ModalLogout = require('./components/modallogout');
 var Footer = require('./components/footer');
 
 var Profile = require('./components/cardprofile');
+var Search = require('./components/cardsearch');
 var Feeds = require('./components/cardfeeds');
 var Content = require('./components/cardcontent');
 
-var ModalAdd = require('./components/modaladd');
+
 
 
 class Home extends React.Component {
@@ -35,11 +36,12 @@ class Home extends React.Component {
                     <div className="col-md-4">
 
                         <Profile user = {userData}/>
+                        <Search/>
                         <Feeds user = {userData} novels = {userNovels}/>
                     </div>
                     <div className="col">
                         <Content/>
-                        <ModalAdd user = {userData}/>
+
                     </div>
                 </div>
             </div>

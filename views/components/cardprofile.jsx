@@ -9,9 +9,9 @@ class ProfileCard extends React.Component {
     const userId = "user"+id
     return (
 
-            <div className="text-dark bg-light border-primary rounded">
+            <div className="card bg-light text-dark rounded">
                 <div class="card-header">
-                    <h4 id ={userId}>Welcome {name}</h4>
+                    <h4 className="mb-0" id ={userId}>Welcome {name}</h4>
                 </div>
                 <div className="card-body">
 

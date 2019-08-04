@@ -1,6 +1,6 @@
 var React = require("react");
 
-class ModalAdd extends React.Component {
+class ModalEdit extends React.Component {
   render() {
 
     const name = this.props.user.name
@@ -49,4 +49,4 @@ class ModalAdd extends React.Component {
   }
 }
 
-module.exports = ModalAdd;
+module.exports = ModalEdit;

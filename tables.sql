@@ -11,7 +11,9 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS novels (
 	id SERIAL PRIMARY KEY,
 	name text,
-	url text
+	url text,
+	source text,
+	uploader_id integer
 );
 \! echo "\nnovels table created\n";
 

@@ -244,83 +244,83 @@ module.exports = (db) => {
             res.status(401).render(`errorpage`, data);
         }
     };
-    // let feedCallback = (req, res) => {
-    //     let userName = req.params.user;
-    //     console.log(userName)
-    //     console.log(req.cookies.usrLogged)
+    let feedCallback = (req, res) => {
+        let userName = req.params.user;
+        console.log(userName)
+        console.log(req.cookies.usrLogged)
 
-    //     const hashedUserLogged = sha256(userName + 'loggedin' + SALT);
-    //     const checkCookie = req.cookies.usrLogged
+        const hashedUserLogged = sha256(userName + 'loggedin' + SALT);
+        const checkCookie = req.cookies.usrLogged
 
-    //     if(checkCookie === hashedUserLogged){
-    //         console.log("it matches!")
-    //         db.usersDb.getUserDetails(userName, (error, result) =>{
-    //             if(result !== null){
+        if(checkCookie === hashedUserLogged){
+            console.log("it matches!")
+            db.usersDb.getUserDetails(userName, (error, result) =>{
+                if(result !== null){
 
-    //                 const userData = {
-    //                     name: result[0].name,
-    //                     id: result[0].id
-    //                 }
-    //                 console.log(userData.id)
-    //                 // after validation
-    //                 // get all user novels
-    //                 db.userNovelsDb.getUserNovels(userData.id, (error, result) =>{
-    //                     // if user has no novels in their list
-    //                     // do this
-    //                     if(result === false){
-    //                         console.log('User has no novels in their list')
-    //                         console.log(result)
+                    const userData = {
+                        name: result[0].name,
+                        id: result[0].id
+                    }
+                    console.log(userData.id)
+                    // after validation
+                    // get all user novels
+                    db.userNovelsDb.getUserNovels(userData.id, (error, result) =>{
+                        // if user has no novels in their list
+                        // do this
+                        if(result === false){
+                            console.log('User has no novels in their list')
+                            console.log(result)
 
 
-    //                         const fullData = {
-    //                             user: userData,
-    //                             novels: result
-    //                         }
-    //                         res.render('profile', fullData);
+                            const fullData = {
+                                user: userData,
+                                novels: result
+                            }
+                            res.render('feedsettings', fullData);
 
-    //                     // if user has novels in their list
-    //                     // do this
-    //                     } else if(result !== null) {
-    //                         console.log(result)
-    //                         console.log(result.rows)
+                        // if user has novels in their list
+                        // do this
+                        } else if(result !== null) {
+                            console.log(result)
+                            console.log(result.rows)
 
-    //                         const fullData = {
-    //                             user: userData,
-    //                             novels: result
-    //                         }
-    //                         res.render('feeds', fullData);
+                            const fullData = {
+                                user: userData,
+                                novels: result
+                            }
+                            res.render('feedsettings', fullData);
 
-    //                     }else {
-    //                         console.log('failed!!')
-    //                         console.log(error)
-    //                         const data = {
-    //                             status: '502 Bad Gateway',
-    //                             msg: 'invalid response'
-    //                         }
-    //                         res.status(502).render(`errorpage`, data);
-    //                     }
-    //                 });
+                        }else {
+                            console.log('failed!!')
+                            console.log(error)
+                            const data = {
+                                status: '502 Bad Gateway',
+                                msg: 'invalid response'
+                            }
+                            res.status(502).render(`errorpage`, data);
+                        }
+                    });
 
-    //             } else {
-    //                 console.log('failed!!')
-    //                 console.log(error)
-    //                 const data = {
-    //                     status: '400 Bad Request',
-    //                     msg: 'failed to login'
-    //                 }
-    //                 res.status(400).render(`errorpage`, data);
-    //             }
-    //         });
-    //     } else{
-    //         console.log("You is unauthorized")
+                } else {
+                    console.log('failed!!')
+                    console.log(error)
+                    const data = {
+                        status: '400 Bad Request',
+                        msg: 'failed to login'
+                    }
+                    res.status(400).render(`errorpage`, data);
+                }
+            });
+        } else{
+            console.log("You is unauthorized")
 
-    //         const data = {
-    //             status: '401 Unauthorized',
-    //             msg: 'There was an error. Please Login to your account'
-    //         }
-    //         res.status(401).render(`errorpage`, data);
-    //     }
-    // };
+            const data = {
+                status: '401 Unauthorized',
+                msg: 'There was an error. Please Login to your account'
+            }
+            res.status(401).render(`errorpage`, data);
+        }
+    };
     let logoutCallback = (req, res) => {
         console.log('preparing to logout')
         console.log(req.cookies)
@@ -370,7 +370,31 @@ module.exports = (db) => {
             }
         })
     };
+    let deleteCallback = (req, res) => {
+        let uName = req.params.user
+        let nId = req.params.novelId
 
+
+        const data = {
+            userName: uName,
+            novelId: nId
+        }
+
+        // insert novels data into novels db
+        db.userNovelsDb.deleteNovels(data, (error, result) =>{
+            if(result === null){
+                console.log('There was an error')
+                console.log(error)
+                const data = {
+                    status: '502 Bad Gateway',
+                    msg: 'Failed to delete novel'
+                }
+                res.status(502).render(`errorpage`, data);
+            } else {
+                res.send("deleted")
+            }
+        })
+    };
 
 
 
@@ -389,8 +413,9 @@ module.exports = (db) => {
     login: loginCallback,
     logout: logoutCallback,
     profile: profileCallback,
-    // feed: feedCallback,
-    add: addCallback
+    feeds: feedCallback,
+    add: addCallback,
+    delete: deleteCallback
   };
 
 }

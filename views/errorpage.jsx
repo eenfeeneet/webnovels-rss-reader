@@ -19,10 +19,10 @@ class Home extends React.Component {
         <body className="vertical-center">
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-8 mx-auto">
+                    <div className="col-md-8 mx-auto">
 
-                        <div className="jumbotron">
-                            <h3 className="display-4">Oops, something went wrong!!</h3>
+                        <div className="jumbotron shadow-lg">
+                            <h4 className="display-4">Oops, something went wrong!!</h4>
                             <hr className="my-3"/>
                             <h5 className="display-6 text-center">{status}</h5>
                             <p className="lead text-center">{errorMsg}</p>
