@@ -4,7 +4,7 @@ var Head = require('./components/head');
 
 
 
-class Home extends React.Component {
+class ErrorPage extends React.Component {
   render() {
 
     var errorMsg  = this.props.msg;
@@ -47,4 +47,4 @@ class Home extends React.Component {
 
 
 
-module.exports = Home;
+module.exports = ErrorPage;

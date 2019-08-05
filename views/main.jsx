@@ -6,7 +6,7 @@ var ModalL = require('./components/modallogin');
 var ModalR = require('./components/modalregister');
 
 
-class Home extends React.Component {
+class Main extends React.Component {
   render() {
 
     console.log("\nIndex Page Rendered")
@@ -32,4 +32,4 @@ class Home extends React.Component {
 
 
 
-module.exports = Home;
+module.exports = Main;

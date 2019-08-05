@@ -63,11 +63,11 @@ var rmvChild = function(){
 };
 
 
-var btnArray = function() {
-    return Array.from(document.querySelectorAll(".foo"))
+var feedBtnArray = function() {
+    return Array.from(document.querySelectorAll(".feed"))
 };
 var btnAddEventList = function() {
-    btnArray().forEach(function(item) {
+    feedBtnArray().forEach(function(item) {
         var s = item.getAttribute('src')
         item.addEventListener('click', function() {
             rmvChild();
@@ -80,10 +80,10 @@ window.onload = function(e) {
     btnAddEventList();
 };
 
-var buttonTest = document.getElementById("settings");
-buttonTest.addEventListener("click", function() {
-    rmvChild();
-})
+// var buttonTest = document.getElementById("settings");
+// buttonTest.addEventListener("click", function() {
+//     rmvChild();
+// })
 
 // var buttonRss = document.getElementById("btn1");
 

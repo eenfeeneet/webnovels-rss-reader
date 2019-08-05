@@ -2,37 +2,29 @@ var React = require('react');
 
 var Head = require('./components/head');
 var NavBar = require('./components/navbar');
+
 var Footer = require('./components/footer');
-
-
-var ModalLogout = require('./components/modallogout');
-var ModalProfile = require('./components/modalprofile');
 
 var CardProfile = require('./components/cardprofile');
 var CardSearch = require('./components/cardsearch');
 var CardFeeds = require('./components/cardfeeds');
+var CardBrowseAsian = require('./components/cardbrowseasian');
 
-var CardPublic = require('./components/cardmain');
+var ModalLogout = require('./components/modallogout');
+var ModalAdd = require('./components/modaladd');
+var ModalEdit = require('./components/modaledit');
+var ModalProfile = require('./components/modalprofile');
 
-
-
-
-class Home extends React.Component {
+class FeedSettings extends React.Component {
   render() {
 
-    console.log("\nProfile Page Rendered\n")
+    console.log("\nFeed Settings Page Rendered\n")
     // console.log(this.props.user)
-
-    const userName = this.props.user.name
-    console.log("\n ==[ User Name ]== \n")
-    console.log(userName)
     const userData = this.props.user
-    console.log("\n ==[ User Data ]== \n")
     console.log(userData)
+    const userName = this.props.user.name
+    console.log(userName)
     const userNovels = this.props.novels
-    console.log("\n ==[ User Novels ]== \n")
-    console.log(userNovels)
-
 
     return (
 
@@ -48,19 +40,20 @@ class Home extends React.Component {
 
                     </div>
                     <div className="col">
-                        <CardPublic>
-                        <CardFeeds user = {userData} novels = {userNovels}/>
-                        </CardPublic>
-
+                        <CardBrowseAsian user = {userData} novels = {userNovels}/>
                     </div>
                 </div>
             </div>
 
 
+
+
+            <ModalAdd user = {userData} novels = {userNovels}/>
+            <ModalEdit user = {userData}/>
             <ModalProfile/>
             <ModalLogout/>
             <Footer/>
-            <script src="/profile.js"></script>
+            <script src="/feedsettings.js"></script>
         </body>
         </html>
       );
@@ -69,4 +62,4 @@ class Home extends React.Component {
 
 
 
-module.exports = Home;
+module.exports = FeedSettings;

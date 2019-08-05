@@ -29,12 +29,20 @@ module.exports = (app, allModels) => {
 
     app.post('/webnosser/register', users.register);
     app.post('/webnosser/login', users.login);
-    app.get('/webnosser/logout', users.logout);
+
     app.get('/webnosser/:user', users.profile);
     app.get('/webnosser/:user/feeds', users.feeds);
+    app.get('/webnosser/:user/royalr', users.royal);
+    app.get('/webnosser/:user/asiano', users.asian);
 
-    app.post('/webnosser/:id/novels/add', users.add);
-    app.delete('/webnosser/:user/feeds/:novelId', users.delete);
+    app.get('/webnosser/:user/logout', users.logout);
+
+    app.post('/webnosser/:user/feeds/add', users.add);
+    app.post('/webnosser/:user/feeds/:id/follow', users.follow);
+    app.put('/webnosser/:user/feeds/:id',users.edit)
+    app.delete('/webnosser/:user/feeds/:id/unfollow', users.unfollow);
+    app.delete('/webnosser/:user/feeds/:id/delete', users.delete);
+
 
 
 

@@ -19,8 +19,6 @@ class Head extends React.Component {
       <link href="https://fonts.googleapis.com/css?family=Orbitron:900&display=swap" rel="stylesheet"/>
 
 
-
-      <script src="https://kit.fontawesome.com/8a65d96d74.js"></script>
       <link rel="stylesheet" type="text/css" href="/login.css"/>
       <link rel="stylesheet" type="text/css" href="/style.css"/>
       <link rel="stylesheet" type="text/css" href="/bootstrap.css"/>

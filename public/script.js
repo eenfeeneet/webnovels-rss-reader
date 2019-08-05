@@ -1,65 +1,65 @@
 
-var responseHandler = function() {
-    var xmlTxt = this.responseText;
-    var domParser = new DOMParser()
-    let doc = domParser.parseFromString(xmlTxt, 'text/xml')
+// var responseHandler = function() {
+//     var xmlTxt = this.responseText;
+//     var domParser = new DOMParser()
+//     let doc = domParser.parseFromString(xmlTxt, 'text/xml')
 
-    doc.querySelectorAll('item').forEach((item) => {
+//     doc.querySelectorAll('item').forEach((item) => {
 
-        let parentCard = document.createElement('div')
-        parentCard.className = 'card border-success'
-
-
-        let cardHeader = document.createElement('h5')
-        cardHeader.className = 'card-header'
-        cardHeader.textContent = item.querySelector('title').textContent
+//         let parentCard = document.createElement('div')
+//         parentCard.className = 'card border-success'
 
 
-        let cardBody = document.createElement('div')
-        cardBody.setAttribute('className', 'card-body');
+//         let cardHeader = document.createElement('h5')
+//         cardHeader.className = 'card-header'
+//         cardHeader.textContent = item.querySelector('title').textContent
 
-        let cardTextChild = document.createElement('p')
-        cardTextChild.className = 'card-text p-2'
-        cardTextChild.innerHTML = item.querySelector('description').textContent
 
-        let chapLinkChild = document.createElement('a')
-        chapLinkChild.className = 'btn btn-outline-success'
-        chapLinkChild.href = item.querySelector('link').textContent
-        chapLinkChild.textContent = "Go website"
+//         let cardBody = document.createElement('div')
+//         cardBody.setAttribute('className', 'card-body');
 
-        parentCard.appendChild(cardHeader);
-        cardBody.appendChild(cardTextChild);
-        cardBody.appendChild(chapLinkChild);
-        parentCard.appendChild(cardBody);
+//         let cardTextChild = document.createElement('p')
+//         cardTextChild.className = 'card-text p-2'
+//         cardTextChild.innerHTML = item.querySelector('description').textContent
 
-        document.querySelector('#content').appendChild(parentCard)
-    })
+//         let chapLinkChild = document.createElement('a')
+//         chapLinkChild.className = 'btn btn-outline-success'
+//         chapLinkChild.href = item.querySelector('link').textContent
+//         chapLinkChild.textContent = "Go website"
 
-    console.log("status text", this.statusText);
-    console.log("status code", this.status);
-};
+//         parentCard.appendChild(cardHeader);
+//         cardBody.appendChild(cardTextChild);
+//         cardBody.appendChild(chapLinkChild);
+//         parentCard.appendChild(cardBody);
 
-var logFeed = function(rssUrl) {
-    // make a new request
-    var request = new XMLHttpRequest();
+//         document.querySelector('#content').appendChild(parentCard)
+//     })
 
-    // listen for the request response
-    request.addEventListener("load", responseHandler);
+//     console.log("status text", this.statusText);
+//     console.log("status code", this.status);
+// };
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/"
-    // ready the system by calling open, and specifying the url
-    var url = "https://www.royalroad.com/fiction/syndication/11209";
-    request.open("GET", proxyurl+rssUrl);
+// var logFeed = function(rssUrl) {
+//     // make a new request
+//     var request = new XMLHttpRequest();
 
-    // send the request
-    request.send();
-}
+//     // listen for the request response
+//     request.addEventListener("load", responseHandler);
 
-window.onload()
+//     const proxyurl = "https://cors-anywhere.herokuapp.com/"
+//     // ready the system by calling open, and specifying the url
+//     var url = "https://www.royalroad.com/fiction/syndication/11209";
+//     request.open("GET", proxyurl+rssUrl);
 
-var buttonRss = document.getElementById("btn1");
+//     // send the request
+//     request.send();
+// }
 
-buttonRss.addEventListener("click", function(event) {
-    console.log( event.target.srcElement )
-    logFeed();
-})
+// window.onload()
+
+// var buttonRss = document.getElementById("btn1");
+
+// buttonRss.addEventListener("click", function(event) {
+//     console.log( event.target.srcElement )
+//     logFeed();
+// })

@@ -39,10 +39,10 @@ module.exports = (pool) => {
         console.log(user);
         console.log(user.name);
         console.log(user.password);
-        let query = 'INSERT INTO users (name,password) VALUES ($1,$2) RETURNING *'
-        let arr = [user.name, user.password];
+        let query = 'INSERT INTO users (name,password,account_created) VALUES ($1,$2,now()) RETURNING *'
+        let values = [user.name, user.password];
 
-        pool.query(query, arr, (error, queryResult) => {
+        pool.query(query, values, (error, queryResult) => {
             if( error ){
                 console.log("query unsuccessful:" + error);
                 callback(error, null);
@@ -54,6 +54,50 @@ module.exports = (pool) => {
                     callback(null, queryResult.rows[0]);
                 }else{
                     console.log("failed to add new user!!");
+                    callback(null, null);
+                }
+            }
+        });
+    };
+            // inserts new user + pw into users table
+    let setLogInDate = (username, callback) => {
+
+        let query = 'UPDATE users SET last_login = now() WHERE name = $1 RETURNING *'
+        let value = [username];
+
+        pool.query(query, value, (error, queryResult) => {
+            if( error ){
+                console.log("query unsuccessful:" + error);
+                callback(error, null);
+            }else{
+                console.log("query successful");
+                if( queryResult.rows.length > 0 ){
+                    console.log('logged out successfully')
+                    callback(null, queryResult.rows[0]);
+                }else{
+                    console.log("failed to log out!!");
+                    callback(null, null);
+                }
+            }
+        });
+    };
+        // inserts new user + pw into users table
+    let setLogOutDate = (username, callback) => {
+
+        let query = 'UPDATE users SET last_login = now() WHERE name = $1 RETURNING *'
+        let value = [username];
+
+        pool.query(query, value, (error, queryResult) => {
+            if( error ){
+                console.log("query unsuccessful:" + error);
+                callback(error, null);
+            }else{
+                console.log("query successful");
+                if( queryResult.rows.length > 0 ){
+                    console.log('logged out successfully')
+                    callback(null, queryResult.rows[0]);
+                }else{
+                    console.log("failed to log out!!");
                     callback(null, null);
                 }
             }
@@ -128,7 +172,7 @@ module.exports = (pool) => {
     // get user details from form
     let getUserDetails = (username, callback) => {
 
-        const query = `SELECT * FROM users WHERE name = $1`;
+        const query = `SELECT id, name, password, last_login, TO_CHAR(last_login :: DATE, 'Mon dd yyyy') lastlogin, TO_CHAR(account_created :: DATE, 'Mon dd yyyy') created  FROM users WHERE name = $1`;
         const values = [username];
 
         pool.query(query, values, (error, queryResult) => {
@@ -196,6 +240,8 @@ module.exports = (pool) => {
 
         checkUserName,
         registerNewUser,
+        setLogInDate,
+        setLogOutDate,
         getUserId,
         getUserName,
         getUserPassword,
