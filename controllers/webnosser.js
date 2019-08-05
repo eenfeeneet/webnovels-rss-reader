@@ -52,7 +52,7 @@ module.exports = (db) => {
     };
 
     let rootCallback = (req, res) => {
-        res.render('root');
+        res.redirect(301,`/webnosser`);
     };
     // let mainCallback = (req, res) => {
     //     res.render('main');
